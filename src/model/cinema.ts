@@ -1,16 +1,17 @@
 import {Schema, model, Document} from 'mongoose';
 
-export interface Cinema extends Document {
+export interface Cinemas extends Document {
     name: string;
     capacity: number;
     availableSeats: number;
 }
 
-const cinemaSchema= new Schema<Cinema>({
+const cinemaSchema= new Schema<Cinemas>({
 
     name:{
         type:String,
         required:[true, 'Name can not be empty '],
+        unique: true
 
     },
     capacity:{
@@ -20,8 +21,9 @@ const cinemaSchema= new Schema<Cinema>({
     availableSeats:{
         type: Number,
         required: true,
+
     }
 },
     {timestamps:true});
-
-export default model<Cinema>('Cinema', cinemaSchema);
+const Cinema=model<Cinemas>('Cinema', cinemaSchema);
+export default Cinema;

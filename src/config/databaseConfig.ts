@@ -9,7 +9,15 @@ const client = new MongoClient(uri, {
         version: ServerApiVersion.v1,
         strict:true,
         deprecationErrors:true
-    }
+    },
+    connectTimeoutMS:30000,
+    socketTimeoutMS:45000
 })
 
 export {client};
+
+export interface BookingInterface {
+    cinemaId:string,
+    name: string;
+    seats: number;
+}
